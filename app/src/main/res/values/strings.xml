@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Wasmah</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="google_map_api_key">AIzaSyCnBsGyeKudM4inpIoomJK_8nd6SVGzLwE</string>
+    <string name="map">Countries Map</string>
+    <string name="repo">JeffKelly Repositories</string>
+    <string name="name">Name</string>
+    <string name="private0">Private</string>
+    <string name="disc">Description</string>
+    <string name="fav">Favourites</string>
+</resources>
