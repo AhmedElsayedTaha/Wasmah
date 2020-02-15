@@ -108,17 +108,21 @@ public class MapFragment extends Fragment implements OnMapReadyCallback , Google
         favouriteList = AppUtilies.getFavourites(getActivity());
         marker.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
         if(favouriteList!=null&&favouriteList.size()>0){
-            for(int i=0;i<favouriteList.size();i++){
-                if(marker.getTitle().equals(favouriteList.get(i))) {
-                    Toast.makeText(getActivity(),"This country already exist",Toast.LENGTH_LONG).show();
-                    flag = true;
-                    break;
+            for(int i=0;i<favouriteList.size();i++) {
+                if (marker.getTitle() != null) {
+                    if (marker.getTitle().equals(favouriteList.get(i))) {
+                        Toast.makeText(getActivity(), "This country already exist", Toast.LENGTH_LONG).show();
+                        flag = true;
+                        break;
+                    }
                 }
             }
             if(!flag){
-                favouriteList.add(marker.getTitle());
-                AppUtilies.SaveFavorites(favouriteList,getActivity());
-                Toast.makeText(getActivity(),"Country Added",Toast.LENGTH_LONG).show();
+                if(marker.getTitle()!=null) {
+                    favouriteList.add(marker.getTitle());
+                    AppUtilies.SaveFavorites(favouriteList, getActivity());
+                    Toast.makeText(getActivity(), "Country Added", Toast.LENGTH_LONG).show();
+                }
 
             }
         }
