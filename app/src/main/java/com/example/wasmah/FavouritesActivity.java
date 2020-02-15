@@ -29,10 +29,15 @@ public class FavouritesActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         favList = AppUtilies.getFavourites(this);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.addItemDecoration(new DividerItemDecoration(recyclerView.getContext(), DividerItemDecoration.VERTICAL));
-        recyclerView.setHasFixedSize(true);
-        FavouritAdapter adapter = new FavouritAdapter(favList,this);
-        recyclerView.setAdapter(adapter);
+        if(favList!=null&&favList.size()>0) {
+            recyclerView.setLayoutManager(new LinearLayoutManager(this));
+            recyclerView.addItemDecoration(new DividerItemDecoration(recyclerView.getContext(), DividerItemDecoration.VERTICAL));
+            recyclerView.setHasFixedSize(true);
+            FavouritAdapter adapter = new FavouritAdapter(favList, this);
+            recyclerView.setAdapter(adapter);
+        }
+        else {
+            Toast.makeText(this,"There aren't any saved countries",Toast.LENGTH_LONG).show();
+        }
     }
 }
