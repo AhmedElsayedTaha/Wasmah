@@ -106,7 +106,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback , Google
     @Override
     public boolean onMarkerClick(Marker marker) {
         favouriteList = AppUtilies.getFavourites(getActivity());
-        marker.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
+        marker.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
         if(favouriteList!=null&&favouriteList.size()>0){
             for(int i=0;i<favouriteList.size();i++){
                 if(marker.getTitle().equals(favouriteList.get(i))) {
