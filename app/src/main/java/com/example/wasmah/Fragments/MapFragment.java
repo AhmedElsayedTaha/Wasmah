@@ -135,7 +135,9 @@ public class MapFragment extends Fragment implements OnMapReadyCallback , Google
                 favouriteList = new ArrayList<>();
                 favouriteList.add(marker.getTitle());
                 AppUtilies.SaveFavorites(favouriteList,getActivity());
-            }
+            Toast.makeText(getActivity(), "Country Added", Toast.LENGTH_LONG).show();
+
+        }
 
 
         return false;
