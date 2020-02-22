@@ -14,10 +14,10 @@ public class RepoViewModel extends ViewModel {
 
 
     private LiveData<PagedList<OurBaseClass>> repoPagedListLiveData;
+    public RepoDataSourceFactory repoDataSourceFactory = new RepoDataSourceFactory();
    // private LiveData<PageKeyedDataSource<Integer,OurBaseClass>> pageKeyedDataSourceLiveData;
 
     public RepoViewModel(){
-        RepoDataSourceFactory repoDataSourceFactory = new RepoDataSourceFactory();
      //   pageKeyedDataSourceLiveData = repoDataSourceFactory.getDataSourceMutableLiveData();
 
         PagedList.Config config =

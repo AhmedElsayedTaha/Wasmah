@@ -11,13 +11,13 @@ public class RepoDataSourceFactory extends DataSource.Factory {
 
     //Type of our DataSource which is PagedKeyDataSource
     private MutableLiveData<PageKeyedDataSource<Integer, OurBaseClass>> dataSourceMutableLiveData = new MutableLiveData<>();
-
+   public RepoDataSource repoDataSource = new RepoDataSource();
 
     //This method will return our data source
     @NonNull
     @Override
     public DataSource create() {
-        RepoDataSource repoDataSource = new RepoDataSource();
+
         //Now we will post this value to our live data
         dataSourceMutableLiveData.postValue(repoDataSource);
         return repoDataSource;

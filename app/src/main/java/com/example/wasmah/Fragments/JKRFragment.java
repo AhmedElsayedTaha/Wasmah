@@ -23,6 +23,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.wasmah.Adapters.RepoAdapter;
@@ -47,6 +48,8 @@ public class JKRFragment extends Fragment {
     private View view;
     @BindView(R.id.myRec)
     RecyclerView recyclerView;
+    @BindView(R.id.progressBar)
+    ProgressBar progressBar;
 
 
     @Override
@@ -60,17 +63,32 @@ public class JKRFragment extends Fragment {
         RepoAdapter adapter = new RepoAdapter(getActivity());
 
         RepoViewModel repoViewModel = ViewModelProviders.of(this).get(RepoViewModel.class);
-        repoViewModel.getRepoPagedListLiveData().observe(this, new Observer<PagedList<OurBaseClass>>() {
-            @Override
-            public void onChanged(PagedList<OurBaseClass> ourBaseClasses) {
-                adapter.submitList(ourBaseClasses);
-                recyclerView.setAdapter(adapter);
-            }
+        repoViewModel.getRepoPagedListLiveData().observe(this, ourBaseClasses -> {
+
+            adapter.submitList(ourBaseClasses);
+            recyclerView.setAdapter(adapter);
+
         });
 
 
+        repoViewModel.repoDataSourceFactory.repoDataSource.getIsLoading().observe(this, new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean isLoading) {
+                if(isLoading)
+                    startProgress();
+                else
+                    stopProgress();
+            }
+        });
 
         return view;
+    }
+
+    private void startProgress(){
+        progressBar.setVisibility(View.VISIBLE);
+    }
+    private void stopProgress(){
+        progressBar.setVisibility(View.GONE);
     }
 
 }

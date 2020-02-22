@@ -52,7 +52,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback , Google
     private Countries countries;
     private ClusterManager<ClusterItems> mClusterManager;
      List<String> favouriteList = new ArrayList<>();
-     boolean flag=false;
+    boolean flag = false;
 
 
     @Override
@@ -89,6 +89,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback , Google
                    ,countries.getRefCountryCodes().get(i).getLongitude()
                     ,countries.getRefCountryCodes().get(i).getCountry());
            mClusterManager.addItem(clusterItems);
+
         }
 
     }
@@ -105,12 +106,14 @@ public class MapFragment extends Fragment implements OnMapReadyCallback , Google
 
     @Override
     public boolean onMarkerClick(Marker marker) {
+         flag=false;
         favouriteList = AppUtilies.getFavourites(getActivity());
         marker.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
+        String title = marker.getTitle();
         if(favouriteList!=null&&favouriteList.size()>0){
             for(int i=0;i<favouriteList.size();i++) {
-                if (marker.getTitle() != null) {
-                    if (marker.getTitle().equals(favouriteList.get(i))) {
+                if (title!= null) {
+                    if (title .equals(favouriteList.get(i))) {
                         Toast.makeText(getActivity(), "This country already exist", Toast.LENGTH_LONG).show();
                         flag = true;
                         break;
@@ -118,13 +121,15 @@ public class MapFragment extends Fragment implements OnMapReadyCallback , Google
                 }
             }
             if(!flag){
-                if(marker.getTitle()!=null) {
-                    favouriteList.add(marker.getTitle());
+               if(title!=null) {
+                    favouriteList.add(title);
                     AppUtilies.SaveFavorites(favouriteList, getActivity());
                     Toast.makeText(getActivity(), "Country Added", Toast.LENGTH_LONG).show();
+                    flag=false;
                 }
 
             }
+
         }
         else {
                 favouriteList = new ArrayList<>();
